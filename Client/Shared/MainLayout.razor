@@ -8,11 +8,17 @@
   <div class="main">
     <div class="top-row px-4 auth">
       <LoginDisplay />
-      <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+      <a href="https://blazor.net" target="_blank" class="ml-md-auto">About</a>
     </div>
 
     <div class="content px-4">
-      @Body
+      <CascadingValue Name="HeadingColor" Value="@_color">
+        @Body
+      </CascadingValue>
     </div>
   </div>
 </div>
+
+@code {
+  private readonly string _color = "#0505b5";
+}
