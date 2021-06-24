@@ -1,10 +1,9 @@
 ﻿using BlazorHostedIdentity.Server.Data;
+using BlazorHostedIdentity.Server.Paging;
 using BlazorHostedIdentity.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorHostedIdentity.Server.Repository
@@ -20,6 +19,13 @@ namespace BlazorHostedIdentity.Server.Repository
       _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
-    public async Task<IEnumerable<Product>> GetProducts() => await _context.Products.ToListAsync();
+    //public async Task<IEnumerable<Product>> GetProducts() => await _context.Products.ToListAsync();
+
+    public async Task<PagedList<Product>> GetProducts(ProductParameters productParameters)
+    {
+      var products = await _context.Products.ToListAsync();
+
+      return PagedList<Product>.ToPagedList(products, productParameters.PageNumber, productParameters.PageSize);
+    }
   }
 }

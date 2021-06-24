@@ -72,7 +72,7 @@ namespace BlazorHostedIdentity.Server
         app.UseHsts();
       }
 
-      app.UseCors(builder => builder.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+      app.UseCors(builder => builder.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithExposedHeaders("X-Pagination"));
 
       app.UseHttpsRedirection();
       app.UseBlazorFrameworkFiles();

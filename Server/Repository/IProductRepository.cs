@@ -1,13 +1,11 @@
-﻿using BlazorHostedIdentity.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BlazorHostedIdentity.Server.Paging;
+using BlazorHostedIdentity.Shared;
 using System.Threading.Tasks;
 
 namespace BlazorHostedIdentity.Server.Repository
 {
   public interface IProductRepository
   {
-    Task<IEnumerable<Product>> GetProducts();
+    Task<PagedList<Product>> GetProducts(ProductParameters productParameters);
   }
 }
