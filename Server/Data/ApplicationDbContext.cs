@@ -1,4 +1,5 @@
 ﻿using BlazorHostedIdentity.Server.Models;
+using BlazorHostedIdentity.Shared;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,9 @@ namespace BlazorHostedIdentity.Server.Data
     {
       base.OnModelCreating(builder);
       builder.ApplyConfiguration(new RoleConfiguration());
+      builder.ApplyConfiguration(new ProductConfiguration());
     }
+
+    public DbSet<Product> Products { get; set; }
   }
 }

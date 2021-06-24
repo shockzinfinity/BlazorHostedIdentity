@@ -1,5 +1,6 @@
 using BlazorHostedIdentity.Server.Data;
 using BlazorHostedIdentity.Server.Models;
+using BlazorHostedIdentity.Server.Repository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,9 @@ namespace BlazorHostedIdentity.Server
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+      services.AddScoped<IProductRepository, ProductRepository>();
+
+      services.AddCors();
 
       services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -48,7 +52,7 @@ namespace BlazorHostedIdentity.Server
         {
           opt.ClientId = Configuration["Authentication:Google:ClientId"];
           opt.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-        })        ;
+        });
 
       services.AddControllersWithViews();
       services.AddRazorPages();
@@ -67,6 +71,8 @@ namespace BlazorHostedIdentity.Server
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
       }
+
+      app.UseCors(builder => builder.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
       app.UseHttpsRedirection();
       app.UseBlazorFrameworkFiles();

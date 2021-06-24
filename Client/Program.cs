@@ -1,3 +1,4 @@
+using BlazorHostedIdentity.Client.HttpRepository;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace BlazorHostedIdentity.Client
 
       // Supply HttpClient instances that include access tokens when making requests to the server project
       builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BlazorHostedIdentity.ServerAPI"));
+      builder.Services.AddScoped<IProductHttpRepository, ProductHttpRepository>();
 
       builder.Services.AddApiAuthorization().AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 

@@ -1,6 +1,16 @@
 ﻿@page "/"
+@page "/index"
 
-<Home Title="Welcome to the BlazorHostedIdentity.Client application." AdditionalAttributes="AdditionalAttributes"></Home>
+<Home Title="Welcome to the BlazorHostedIdentity.Client application." AdditionalAttributes="AdditionalAttributes">
+  <ChildContent>
+    Feel free to
+    <a href="https://shockzinfinity.github.io" target="_blank">visit my blog</a>
+    any time you want.
+  </ChildContent>
+  <ContactMe>
+    Feel free to send email <a href="mailto://shockzinfinity@gmail.com">shockzinfinity@gmail.com</a>
+  </ContactMe>
+</Home>
 
 @code {
   public Dictionary<string, object> AdditionalAttributes { get; set; } = new Dictionary<string, object>

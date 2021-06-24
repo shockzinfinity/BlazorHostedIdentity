@@ -8,5 +8,7 @@ namespace BlazorHostedIdentity.Client.Components
     [Parameter] public string Title { get; set; }
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object> AdditionalAttributes { get; set; }
     [CascadingParameter(Name = "HeadingColor")] public string Color { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment ContactMe { get; set; }
   }
 }
