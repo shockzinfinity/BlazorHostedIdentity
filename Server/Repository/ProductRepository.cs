@@ -24,7 +24,10 @@ namespace BlazorHostedIdentity.Server.Repository
 
     public async Task<PagedList<Product>> GetProducts(ProductParameters productParameters)
     {
-      var products = await _context.Products.Search(productParameters.SearchTerm).ToListAsync();
+      var products = await _context.Products
+        .Search(productParameters.SearchTerm)
+        .Sort(productParameters.OrderBy)
+        .ToListAsync();
 
       return PagedList<Product>.ToPagedList(products, productParameters.PageNumber, productParameters.PageSize);
     }

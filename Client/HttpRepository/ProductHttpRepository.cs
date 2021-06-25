@@ -40,7 +40,8 @@ namespace BlazorHostedIdentity.Client.HttpRepository
     {
       var queryStringParam = new Dictionary<string, string> {
         { "pageNumber", productParameters.PageNumber.ToString() },
-        { "searchTerm", productParameters.SearchTerm == null ? "" : productParameters.SearchTerm }
+        { "searchTerm", productParameters.SearchTerm == null ? "" : productParameters.SearchTerm },
+        { "orderBy", productParameters.OrderBy }
       };
       var response = await _client.GetAsync(QueryHelpers.AddQueryString("api/Products", queryStringParam));
 

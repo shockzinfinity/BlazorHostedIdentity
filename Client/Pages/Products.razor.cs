@@ -39,5 +39,12 @@ namespace BlazorHostedIdentity.Client.Pages
       _productParameters.SearchTerm = searchTerm;
       await GetProducts();
     }
+
+    private async Task SortChanged(string orderBy)
+    {
+      Console.WriteLine(orderBy);
+      _productParameters.OrderBy = orderBy;
+      await GetProducts();
+    }
   }
 }
