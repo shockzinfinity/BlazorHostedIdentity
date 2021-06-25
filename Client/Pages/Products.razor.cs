@@ -1,6 +1,7 @@
 ﻿using BlazorHostedIdentity.Client.HttpRepository;
 using BlazorHostedIdentity.Shared;
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -29,6 +30,14 @@ namespace BlazorHostedIdentity.Client.Pages
       var pagingResponse = await ProductRepository.GetProducts(_productParameters);
       ProductList = pagingResponse.Items;
       MetaData = pagingResponse.MetaData;
+    }
+
+    private async Task SearchChanged(string searchTerm)
+    {
+      Console.WriteLine(searchTerm);
+      _productParameters.PageNumber = 1;
+      _productParameters.SearchTerm = searchTerm;
+      await GetProducts();
     }
   }
 }

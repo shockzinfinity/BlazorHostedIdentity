@@ -1,4 +1,5 @@
 ﻿using BlazorHostedIdentity.Server.Data;
+using BlazorHostedIdentity.Server.Extensions;
 using BlazorHostedIdentity.Server.Paging;
 using BlazorHostedIdentity.Shared;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,7 @@ namespace BlazorHostedIdentity.Server.Repository
 
     public async Task<PagedList<Product>> GetProducts(ProductParameters productParameters)
     {
-      var products = await _context.Products.ToListAsync();
+      var products = await _context.Products.Search(productParameters.SearchTerm).ToListAsync();
 
       return PagedList<Product>.ToPagedList(products, productParameters.PageNumber, productParameters.PageSize);
     }

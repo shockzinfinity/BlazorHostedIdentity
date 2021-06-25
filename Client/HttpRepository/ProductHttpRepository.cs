@@ -39,7 +39,8 @@ namespace BlazorHostedIdentity.Client.HttpRepository
     public async Task<PagingResponse<Product>> GetProducts(ProductParameters productParameters)
     {
       var queryStringParam = new Dictionary<string, string> {
-        {"pageNumber", productParameters.PageNumber.ToString() }
+        { "pageNumber", productParameters.PageNumber.ToString() },
+        { "searchTerm", productParameters.SearchTerm == null ? "" : productParameters.SearchTerm }
       };
       var response = await _client.GetAsync(QueryHelpers.AddQueryString("api/Products", queryStringParam));
 
