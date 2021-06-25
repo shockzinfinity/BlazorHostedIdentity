@@ -4,6 +4,7 @@ using BlazorHostedIdentity.Shared;
 using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -64,6 +65,21 @@ namespace BlazorHostedIdentity.Client.HttpRepository
 
       if (!response.IsSuccessStatusCode) {
         throw new ApplicationException(postResult);
+      }
+    }
+
+    public async Task<string> UploadProductImage(MultipartFormDataContent content)
+    {
+      var response = await _client.PostAsync("api/Upload", content);
+      var postContent = await response.Content.ReadAsStringAsync();
+
+      if (!response.IsSuccessStatusCode) {
+        throw new ApplicationException(postContent);
+      }
+      else {
+        var imageUrl = Path.Combine("https://localhost:6001/", postContent);
+
+        return imageUrl;
       }
     }
   }

@@ -16,5 +16,7 @@ namespace BlazorHostedIdentity.Client.Pages
       ProductRepository.CreateProduct(_product);
       _notification.Show();
     }
+
+    private void AssignImageUrl(string imageUrl) => _product.ImageUrl = imageUrl;
   }
 }

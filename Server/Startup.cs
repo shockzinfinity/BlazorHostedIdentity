@@ -4,12 +4,15 @@ using BlazorHostedIdentity.Server.Repository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 
 namespace BlazorHostedIdentity.Server
@@ -77,6 +80,10 @@ namespace BlazorHostedIdentity.Server
       app.UseHttpsRedirection();
       app.UseBlazorFrameworkFiles();
       app.UseStaticFiles();
+      app.UseStaticFiles(new StaticFileOptions() {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"StaticFiles")),
+        RequestPath = new PathString("/StaticFiles")
+      });
 
       app.UseRouting();
 
