@@ -82,5 +82,33 @@ namespace BlazorHostedIdentity.Client.HttpRepository
         return imageUrl;
       }
     }
+
+    public async Task<Product> GetProduct(string id)
+    {
+      var url = Path.Combine("api/Products", id);
+      var response = await _client.GetAsync(url);
+      var product = await response.ReadContentAs<Product>();
+
+      return product;
+    }
+
+    public async Task UpdateProduct(Product product)
+    {
+      var content = JsonSerializer.Serialize(product);
+      var bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
+      var url = Path.Combine("api/Products", product.Id.ToString());
+
+      var putResult = await _client.PutAsync(url, bodyContent);
+      var putContent = await putResult.Content.ReadAsStringAsync();
+
+      if (!putResult.IsSuccessStatusCode)
+        throw new ApplicationException(putContent);
+    }
+
+    public async Task DeleteProduct(Guid id)
+    {
+      var url = Path.Combine("api/Products", id.ToString());
+      var deleteResult = await _client.DeleteAsync(url);
+    }
   }
 }

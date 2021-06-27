@@ -41,5 +41,38 @@ namespace BlazorHostedIdentity.Server.Controllers
 
       return Created("", product);
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetProduct(Guid id)
+    {
+      var product = await _repository.GetProduct(id);
+      return Ok(product);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] Product product)
+    {
+      // validation
+
+      var dbProduct = await _repository.GetProduct(id);
+      if (dbProduct == null)
+        return NotFound();
+
+      await _repository.UpdateProduct(product, dbProduct);
+
+      return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteProduct(Guid id)
+    {
+      var product = await _repository.GetProduct(id);
+      if (product == null)
+        return NotFound();
+
+      await _repository.DeleteProduct(product);
+
+      return NoContent();
+    }
   }
 }
