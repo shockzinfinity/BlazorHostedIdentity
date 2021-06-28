@@ -1,4 +1,6 @@
+using BlazorHostedIdentity.Client.AuthProvider;
 using BlazorHostedIdentity.Client.HttpRepository;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;

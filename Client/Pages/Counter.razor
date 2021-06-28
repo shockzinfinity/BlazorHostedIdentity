@@ -3,10 +3,26 @@
 
 <AuthorizeView>
   <Authorized>
-    The user: @context.User.FindFirst(ClaimTypes.Name).Value is authorized.
+    The user: @context.User.FindFirst(c => c.Type == "name").Value is authorized.
+    @foreach (var item in context.User.Identities)
+    {
+      foreach (var claim in item.Claims)
+      {
+        Console.WriteLine($"{claim.Type} : {claim.Value}");
+      }
+    }
+    @context.User.Identity.AuthenticationType
   </Authorized>
   <NotAuthorized>
     The user is NOT authorized.
+    @foreach (var item in context.User.Identities)
+    {
+      foreach (var claim in item.Claims)
+      {
+        Console.WriteLine($"{claim.Type} : {claim.Value}");
+      }
+    }
+    @context.User.Identity.AuthenticationType
   </NotAuthorized>
 </AuthorizeView>
 
@@ -14,11 +30,31 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<ul>
+  @foreach (var item in AuthState.Result.User.Identities)
+  {
+    foreach (var claim in item.Claims)
+    {
+      <li><b>@claim.Type</b> : @claim.Value</li>
+    }
+  }
+</ul>
 @code {
   private int currentCount = 0;
+  [CascadingParameter] public Task<AuthenticationState> AuthState { get; set; }
 
-  private void IncrementCount()
+  private async Task IncrementCount()
   {
-    currentCount++;
+    var authState = await AuthState;
+    var user = authState.User;
+
+    if (user.Identity.IsAuthenticated)
+    {
+      currentCount++;
+    }
+    else
+    {
+      currentCount--;
+    }
   }
 }

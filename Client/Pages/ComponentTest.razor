@@ -1,0 +1,37 @@
+﻿@page "/compTest"
+
+<h1>Add Organization</h1>
+
+<div class="form-group">
+  <BusyButton Caption="Save" IsBusyCaption="Saving..." Icon="check" IsBusy="_isBusy" OnClickCallback="@(async () => await OnValidSubmitAsync())" />
+  <a class="btn btn-link" href="#">Cancel</a>
+</div>
+
+<div class="form-group">
+  <BusyButton Caption="Delete" IsBusyCaption="Deleting..." Icon="trash" color="danger" IsBusy="_isBusy2" OnClickCallback="@(async () => await OnValidSubmitAsync2())" />
+  <a class="btn btn-link" href="#">Cancel</a>
+</div>
+
+@code {
+  private bool _isBusy = false;
+  private bool _isBusy2 = false;
+  private string _testString = string.Empty;
+  private string _deleteString = "Delete something";
+
+  private async Task OnValidSubmitAsync()
+  {
+    _isBusy = true;
+
+    await Task.Delay(3000);
+
+    _isBusy = false;
+  }
+  private async Task OnValidSubmitAsync2()
+  {
+    _isBusy2 = true;
+
+    await Task.Delay(3000);
+
+    _isBusy2 = false;
+  }
+}

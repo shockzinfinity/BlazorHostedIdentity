@@ -1,0 +1,72 @@
+﻿@page "/profile"
+@using System.Security.Claims
+
+<section class="mb-4">
+  <h1 class="mb-4">Authorize View Component way.</h1>
+  <AuthorizeView>
+    <Authorized>
+      <h2 class="mb-4">Hello, @context.User.Identity.Name</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var claim in context.User.Claims)
+          {
+            <tr>
+              <td>@claim.Type</td>
+              <td>@claim.Value</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </Authorized>
+  </AuthorizeView>
+</section>
+
+<section class="mb-4">
+  <h1 class="mb-4">Authentication State way.</h1>
+  <h2 class="mb-4">Hello, @_authenticationStateUser.Identity.Name</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var claim in _authenticationStateUser.Claims)
+      {
+        <tr>
+          <td>@claim.Type</td>
+          <td>@claim.Value</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>
+
+<section class="mb-4">
+  <h1 class="mb-4">Authentication State Provider way.</h1>
+  <h2 class="mb-4">Hello, @_authenticationStateProviderUser.Identity.Name</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var claim in _authenticationStateProviderUser.Claims)
+      {
+        <tr>
+          <td>@claim.Type</td>
+          <td>@claim.Value</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>
