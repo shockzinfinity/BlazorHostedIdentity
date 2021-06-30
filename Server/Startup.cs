@@ -55,6 +55,11 @@ namespace BlazorHostedIdentity.Server
         {
           opt.ClientId = Configuration["Authentication:Google:ClientId"];
           opt.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+        })
+        .AddFacebook(fo =>
+        {
+          fo.AppId = Configuration["Authentication:Facebook:AppId"];
+          fo.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
         });
 
       services.AddControllersWithViews();

@@ -14,7 +14,7 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "baa1e214-8926-4478-b37c-3a01c6ff7b92", "561cb08f-1f00-49dc-95d2-57daf4011891", "Administorator", "ADMINISTRATOR" });
+                values: new object[] { "baa1e214-8926-4478-b37c-3a01c6ff7b92", "561cb08f-1f00-49dc-95d2-57daf4011891", "Administrator", "ADMINISTRATOR" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

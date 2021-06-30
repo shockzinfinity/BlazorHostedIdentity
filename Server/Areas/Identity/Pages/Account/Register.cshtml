@@ -57,6 +57,12 @@
                       <span class="si-text">Sign up with @provider.DisplayName</span>
                     </button>
                   }
+                  else if (provider.DisplayName.Equals("Facebook"))
+                  {
+                    <button type="submit" class="fa fa-facebook" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                      <span class="si-text">Sign up with @provider.DisplayName</span>
+                    </button>
+                  }
                   else
                   {
                     <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
