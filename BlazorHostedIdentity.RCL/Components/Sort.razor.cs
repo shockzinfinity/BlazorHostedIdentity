@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
-namespace BlazorHostedIdentity.Client.Components
+namespace BlazorHostedIdentity.RCL.Components
 {
   public partial class Sort
   {

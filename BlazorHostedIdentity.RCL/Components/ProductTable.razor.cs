@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorHostedIdentity.Client.Components
+namespace BlazorHostedIdentity.RCL.Components
 {
   public partial class ProductTable
   {

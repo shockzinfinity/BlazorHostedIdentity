@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorHostedIdentity.Common\BlazorHostedIdentity.Common.csproj" />
+    <ProjectReference Include="..\BlazorHostedIdentity.RCL\BlazorHostedIdentity.RCL.csproj" />
     <ProjectReference Include="..\Shared\BlazorHostedIdentity.Shared.csproj" />
   </ItemGroup>
 

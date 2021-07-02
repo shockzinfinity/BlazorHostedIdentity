@@ -39,13 +39,3 @@ jsFunctions.registerMouseCoordinatesHandler = function (dotNetObjRef) {
 
   document.getElementById("coordinates").onmousemove = mouseCoordinatesHandler;
 }
-
-jsFunctions.registerOnlineStatusHandler = function (dotNetObjRef) {
-  function onlineStatusHandler() {
-    dotNetObjRef.invokeMethodAsync("SetOnlineStatusColor", navigator.onLine);
-  };
-
-  onlineStatusHandler();
-  window.addEventListener("online", onlineStatusHandler);
-  window.addEventListener("offline", onlineStatusHandler);
-}

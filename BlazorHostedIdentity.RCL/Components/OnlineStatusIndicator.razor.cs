@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System;
 using System.Threading.Tasks;
 
-namespace BlazorHostedIdentity.Client.Components
+namespace BlazorHostedIdentity.RCL.Components
 {
   public partial class OnlineStatusIndicator
   {
@@ -14,7 +13,7 @@ namespace BlazorHostedIdentity.Client.Components
     {
       if (firstRender) {
         var dotNetObjRef = DotNetObjectReference.Create(this);
-        await JSRuntime.InvokeVoidAsync("jsFunctions.registerOnlineStatusHandler", dotNetObjRef);
+        await JSRuntime.InvokeVoidAsync("onlineStatusIndicator.registerOnlineStatusHandler", dotNetObjRef);
       }
     }
 
