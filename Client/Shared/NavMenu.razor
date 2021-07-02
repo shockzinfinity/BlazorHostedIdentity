@@ -1,56 +1,27 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-  <a class="navbar-brand" href="">BlazorHostedIdentity</a>
-  <button class="navbar-toggler" @onclick="ToggleNavMenu">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-</div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-  <ul class="nav flex-column">
-    <li class="nav-item px-3">
-      <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-        <span class="oi oi-home" aria-hidden="true"></span> Home
-      </NavLink>
-    </li>
-    <li class="nav-item px-3">
-      <NavLink class="nav-link" href="counter">
-        <span class="oi oi-plus" aria-hidden="true"></span> Counter
-      </NavLink>
-    </li>
-    <li class="nav-item px-3">
-      <NavLink class="nav-link" href="products">
-        <span class="oi oi-plus" aria-hidden="true"></span> Products
-      </NavLink>
-    </li>
-    <li class="nav-item px-3">
-      <NavLink class="nav-link" href="profile">
-        <span class="oi oi-plus" aria-hidden="true"></span> Profile
-      </NavLink>
-    </li>
-    <li class="nav-item px-3">
-      <NavLink class="nav-link" href="compTest">
-        <span class="oi oi-plus" aria-hidden="true"></span> Component Test
-      </NavLink>
-    </li>
+﻿<MudDrawer @bind-Open="SidebarOpen" Elevation="1">
+  <MudDrawerHeader>
+    <MudAvatar Color="Color.Transparent" Size="Size.Large" Image="assets/Polly-Logo.png" />
+    <MudText Typo="Typo.h6" Color="Color.Primary" Style="margin-top: 10px; margin-left: 15px;">ironPot42.com</MudText>
+  </MudDrawerHeader>
+  <MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Filled.Home">Home</MudNavLink>
+    <MudNavLink Href="/counter" Match="NavLinkMatch.All" Icon="@Icons.Filled.Exposure">Counter</MudNavLink>
+    <MudNavLink Href="/products" Match="NavLinkMatch.All" Icon="@Icons.Filled.AllInbox">Products</MudNavLink>
+    <MudNavLink Href="/profile" Match="NavLinkMatch.All" Icon="@Icons.Custom.Brands.MudBlazor">Profile</MudNavLink>
+    <MudNavLink Href="/compTest" Match="NavLinkMatch.All" Icon="@Icons.Filled.SettingsInputComponent">Component Test</MudNavLink>
+    <MudNavGroup Title="Expanding" Icon="@Icons.Filled.DashboardCustomize" Expanded="true">
+      <MudNavLink Href="#" Icon="@Icons.Filled.Camera">Photos</MudNavLink>
+      <MudNavLink Href="#" Icon="@Icons.Filled.Celebration">Party</MudNavLink>
+    </MudNavGroup>
     <AuthorizeView Roles="Administrator">
       <Authorized>
-        <li class="nav-item px-3">
-          <NavLink class="nav-link" href="fetchdata">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-          </NavLink>
-        </li>
+        <MudNavLink Href="/fetchdata" Icon="@Icons.Filled.Storage">FetchData</MudNavLink>
       </Authorized>
     </AuthorizeView>
-  </ul>
-</div>
+  </MudNavMenu>
+</MudDrawer>
+
 
 @code {
-  private bool collapseNavMenu = true;
-
-  private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-  private void ToggleNavMenu()
-  {
-    collapseNavMenu = !collapseNavMenu;
-  }
+  [Parameter] public bool SidebarOpen { get; set; }
 }

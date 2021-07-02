@@ -3,6 +3,7 @@ using BlazorHostedIdentity.RCL.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using MudBlazor.Services;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace BlazorHostedIdentity.Client
       builder.Services.AddBlazorToastr();
 
       builder.Services.AddApiAuthorization().AddAccountClaimsPrincipalFactory<CustomUserFactory>();
+
+      builder.Services.AddMudServices();
 
       await builder.Build().RunAsync();
     }

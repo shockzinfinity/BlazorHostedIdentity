@@ -1,0 +1,24 @@
+﻿<MudCard Outlined="true">
+  <MudCardHeader>
+    <CardHeaderAvatar>
+      <MudAvatar Color="Color.Secondary">I</MudAvatar>
+    </CardHeaderAvatar>
+    <CardHeaderContent>
+      <MudText Typo="Typo.body1">ironPot42</MudText>
+      <MudText Typo="Typo.body2">based on Seoul</MudText>
+    </CardHeaderContent>
+    <CardHeaderActions>
+      <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Default" />
+    </CardHeaderActions>
+  </MudCardHeader>
+  <MudCardMedia @attributes="AdditionalAttributes" Height="400" />
+  <MudCardContent>
+    <MudText Typo="Typo.h5">@Title</MudText>
+    <MudText Typo="Typo.body2">@ChildContent</MudText>
+    <MudText Typo="Typo.body2">@ContactMe</MudText>
+  </MudCardContent>
+  <MudCardActions>
+    <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+    <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+  </MudCardActions>
+</MudCard>

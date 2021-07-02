@@ -3,44 +3,52 @@
 
 <Home Title="Welcome to the BlazorHostedIdentity.Client application." AdditionalAttributes="AdditionalAttributes">
   <ChildContent>
-    Feel free to
-    <a href="https://shockzinfinity.github.io" target="_blank">visit my blog</a>
-    any time you want.
+    <MudText Typo="Typo.body2">
+      Feel free to
+      <MudLink Href="https://shockzinfinity.github.io" target="_blank">visit my blog</MudLink>
+      any time you want.
+    </MudText>
   </ChildContent>
   <ContactMe>
-    Feel free to send email <a href="mailto://shockzinfinity@gmail.com">shockzinfinity@gmail.com</a>
+    <MudText Typo="Typo.body2">
+      Feel free to send email <MudLink Href="mailto://shockzinfinity@gmail.com">shockzinfinity@gmail.com</MudLink>
+    </MudText>
   </ContactMe>
 </Home>
 
 <br />
 
-<h3>
+<MudText Typo="Typo.h5">
   Use the following links to explore different examples
+  <br />
   of using a JS code with .NET in Blazor WebAssembly Project:
-</h3>
-
+</MudText>
+<MudDivider DividerType="DividerType.Middle" Class="my-6" />
 <ul>
   <li>
-    <a href="/jsindotnet">
+    <MudChip Icon="@Icons.Material.Filled.Extension" Color="Color.Dark">Extensions</MudChip>
+    <MudLink Href="/jsindotnet">
       How to call JavaScript code from .NET
-    </a>
+    </MudLink>
   </li>
   <li>
-    <a href="/dotnetinjs">
+    <MudChip Icon="@Icons.Material.Filled.Extension" Color="Color.Dark">Extensions</MudChip>
+    <MudLink Href="/dotnetinjs">
       How to call .NET code from JavaScript
-    </a>
+    </MudLink>
   </li>
   <li>
-    <a href="/wrappjsindotnet">
+    <MudChip Icon="@Icons.Material.Filled.Extension" Color="Color.Dark">Extensions</MudChip>
+    <MudLink Href="/wrappjsindotnet">
       Wrapping JS Library in C#
-    </a>
+    </MudLink>
   </li>
 </ul>
 
 @code {
   public Dictionary<string, object> AdditionalAttributes { get; set; } = new Dictionary<string, object>
 {
-    {"src", "/assets/shockzHomePicture.jpg" },
+    {"Image", "/assets/shockzHomePicture.jpg" },
     {"alt", "Home component" }
   };
 }

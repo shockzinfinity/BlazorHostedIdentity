@@ -1,24 +1,25 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-  <div class="sidebar">
-    <NavMenu />
-  </div>
-
-  <div class="main">
-    <div class="top-row px-4 auth">
-      <LoginDisplay />
-      <a href="https://blazor.net" target="_blank" class="ml-md-auto">About</a>
-    </div>
-
-    <div class="content px-4">
+<MudLayout>
+  <AppBar OnSidebarToggled="ToggleSidebar" OnThemeToggled="ToggleTheme" />
+  <NavMenu SidebarOpen="_sidebarOpen" />
+  <MudMainContent Class="pt-16 px-16">
+    <MudContainer Class="mt-6">
       <CascadingValue Name="HeadingColor" Value="@_color">
         @Body
       </CascadingValue>
-    </div>
-  </div>
-</div>
+    </MudContainer>
+  </MudMainContent>
+</MudLayout>
+
+<MudThemeProvider Theme="_currentTheme" />
 
 @code {
   private readonly string _color = "#0505b5";
+  private MudTheme _currentTheme = new MudTheme();
+  private bool _sidebarOpen = false;
+
+  private void ToggleTheme(MudTheme changedTheme) => _currentTheme = changedTheme;
+
+  private void ToggleSidebar() => _sidebarOpen = !_sidebarOpen;
 }
