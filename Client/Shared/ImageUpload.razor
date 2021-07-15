@@ -1,4 +1,8 @@
-﻿<InputFile OnChange="HandleSelected" multiple />
+﻿<InputFile id="fileInput" OnChange="HandleSelected" hidden />
+
+<MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Filled.CloudUpload" Class="my-3" for="fileInput">
+  Upload Image
+</MudButton>
 
 @if (ImageUrl != null)
 {

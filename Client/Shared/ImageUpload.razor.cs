@@ -1,6 +1,7 @@
 ﻿using BlazorHostedIdentity.Client.HttpRepository;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using MudBlazor;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -13,6 +14,7 @@ namespace BlazorHostedIdentity.Client.Shared
     [Parameter] public string ImageUrl { get; set; }
     [Parameter] public EventCallback<string> OnChange { get; set; }
     [Inject] public IProductHttpRepository ProductRepository { get; set; }
+    [Inject] public ISnackbar Snackbar { get; set; }
 
     private async Task HandleSelected(InputFileChangeEventArgs e)
     {
@@ -31,6 +33,8 @@ namespace BlazorHostedIdentity.Client.Shared
           }
         }
       }
+
+      Snackbar.Add("Image uploaded successfully.", Severity.Info);
     }
   }
 }

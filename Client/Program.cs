@@ -3,6 +3,7 @@ using BlazorHostedIdentity.RCL.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using MudBlazor;
 using MudBlazor.Services;
 using System;
 using System.Net.Http;
@@ -26,7 +27,13 @@ namespace BlazorHostedIdentity.Client
 
       builder.Services.AddApiAuthorization().AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 
-      builder.Services.AddMudServices();
+      builder.Services.AddMudServices(config =>
+      {
+        config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopRight;
+        config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
+        config.SnackbarConfiguration.ShowCloseIcon = true;
+        config.SnackbarConfiguration.MaxDisplayedSnackbars = 2;
+      });
 
       await builder.Build().RunAsync();
     }

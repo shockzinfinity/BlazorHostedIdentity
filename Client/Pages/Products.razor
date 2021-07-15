@@ -1,6 +1,12 @@
 ﻿@page "/products"
 @using BlazorHostedIdentity.Shared
 
+<MudTooltip Text="Create Product">
+  <MudLink Href="/createProduct">
+    <MudFab Icon="@Icons.Filled.Add" Color="Color.Secondary" Size="Size.Large" />
+  </MudLink>
+</MudTooltip>
+
 <MudTable ServerData="@(new Func<TableState, Task<TableData<Product>>>(GetServerData))"
           Hover="true" Breakpoint="Breakpoint.Sm" RightAlignSmall="true"
           @ref="_table" RowsPerPage="4">
