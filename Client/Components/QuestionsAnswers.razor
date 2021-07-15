@@ -1,0 +1,12 @@
+﻿<MudTable Items="QAs" Hover="true" Breakpoint="Breakpoint.Sm">
+  <HeaderContent>
+    <MudTh>User</MudTh>
+    <MudTh>Question</MudTh>
+    <MudTh>Answer</MudTh>
+  </HeaderContent>
+  <RowTemplate>
+    <MudTd DataLabel="User">@context.User</MudTd>
+    <MudTd DataLabel="Question">@context.Question</MudTd>
+    <MudTd DataLabel="Answer">@context.Answer</MudTd>
+  </RowTemplate>
+</MudTable>
