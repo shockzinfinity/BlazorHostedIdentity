@@ -18,6 +18,10 @@ namespace BlazorHostedIdentity.Client.Pages
       _productParameters.PageSize = state.PageSize;
       _productParameters.PageNumber = state.Page + 1;
 
+      _productParameters.OrderBy = state.SortDirection == SortDirection.Descending ?
+        state.SortLabel + " desc" :
+        state.SortLabel;
+
       var response = await ProductRepository.GetProducts(_productParameters);
 
       return new TableData<Product> {

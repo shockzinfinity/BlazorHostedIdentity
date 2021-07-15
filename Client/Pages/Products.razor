@@ -7,15 +7,15 @@
   <ToolBarContent>
     <MudText Typo="Typo.h6">Products</MudText>
     <MudToolBarSpacer />
-    <MudTextField T="string" ValueChanged="@(searchTerm => OnSearch(searchTerm))"
+    <MudTextField T="string" OnDebounceIntervalElapsed="OnSearch" DebounceInterval="500"
                   Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
                   IconSize="Size.Medium" Class="mt-0"/>
   </ToolBarContent>
   <HeaderContent>
     <MudTh>Image</MudTh>
-    <MudTh>Name</MudTh>
+    <MudTh><MudTableSortLabel T="Product" SortLabel="name">Name</MudTableSortLabel></MudTh>
     <MudTh>Supplier</MudTh>
-    <MudTh>Price</MudTh>
+    <MudTh><MudTableSortLabel T="Product" SortLabel="price">Price</MudTableSortLabel></MudTh>
   </HeaderContent>
   <RowTemplate>
     <MudTd DataLabel="Image">

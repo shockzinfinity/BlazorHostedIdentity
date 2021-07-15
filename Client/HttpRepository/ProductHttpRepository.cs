@@ -44,7 +44,7 @@ namespace BlazorHostedIdentity.Client.HttpRepository
         { "pageNumber", productParameters.PageNumber.ToString() },
         { "pageSize", productParameters.PageSize.ToString() },
         { "searchTerm", productParameters.SearchTerm ?? "" },
-        { "orderBy", productParameters.OrderBy }
+        { "orderBy", productParameters.OrderBy ?? "name" }
       };
 
       using (var response = await _client.GetAsync(QueryHelpers.AddQueryString("api/Products", queryStringParam))) {
