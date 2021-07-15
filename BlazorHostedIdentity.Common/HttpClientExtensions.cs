@@ -13,6 +13,7 @@ namespace BlazorHostedIdentity.Common
         throw new ApplicationException($"Something went wrong calling the API: {response.ReasonPhrase}");
 
       var dataAsString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+      //var dataAsStream = await response.Content.ReadAsStreamAsync();
 
       return JsonSerializer.Deserialize<T>(dataAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
     }

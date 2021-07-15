@@ -1,57 +1,35 @@
 ﻿using BlazorHostedIdentity.Client.HttpRepository;
 using BlazorHostedIdentity.Shared;
 using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
+using MudBlazor;
 using System.Threading.Tasks;
 
 namespace BlazorHostedIdentity.Client.Pages
 {
   public partial class Products
   {
-    public List<Product> ProductList { get; set; } = new List<Product>();
-    public MetaData MetaData { get; set; } = new MetaData();
+    private MudTable<Product> _table;
     private ProductParameters _productParameters = new ProductParameters();
+    private readonly int[] _pageSizeOptions = { 4, 6, 10 };
     [Inject] public IProductHttpRepository ProductRepository { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    private async Task<TableData<Product>> GetServerData(TableState state)
     {
-      await GetProducts();
+      _productParameters.PageSize = state.PageSize;
+      _productParameters.PageNumber = state.Page + 1;
+
+      var response = await ProductRepository.GetProducts(_productParameters);
+
+      return new TableData<Product> {
+        Items = response.Items,
+        TotalItems = response.MetaData.TotalCount
+      };
     }
 
-    private async Task SelectedPage(int page)
+    private void OnSearch(string searchTerm)
     {
-      _productParameters.PageNumber = page;
-      await GetProducts();
-    }
-
-    private async Task GetProducts()
-    {
-      var pagingResponse = await ProductRepository.GetProducts(_productParameters);
-      ProductList = pagingResponse.Items;
-      MetaData = pagingResponse.MetaData;
-    }
-
-    private async Task SearchChanged(string searchTerm)
-    {
-      Console.WriteLine(searchTerm);
-      _productParameters.PageNumber = 1;
       _productParameters.SearchTerm = searchTerm;
-      await GetProducts();
-    }
-
-    private async Task SortChanged(string orderBy)
-    {
-      Console.WriteLine(orderBy);
-      _productParameters.OrderBy = orderBy;
-      await GetProducts();
-    }
-
-    private async Task DeleteProduct(Guid id)
-    {
-      await ProductRepository.DeleteProduct(id);
-      _productParameters.PageNumber = 1;
-      await GetProducts();
+      _table.ReloadServerData();
     }
   }
 }

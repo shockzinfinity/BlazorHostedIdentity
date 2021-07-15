@@ -1,22 +1,31 @@
 ﻿@page "/products"
-<div class="row">
-  <div class="col-md-5">
-    <Search OnSearchChanged="SearchChanged" />
-  </div>
-  <div class="col-md-5">
-    <Sort OnSortChanged="SortChanged" />
-  </div>
-  <div class="col-md-2">
-    <a href="/createProduct">Create Product</a>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <ProductTable Products="ProductList" OnDeleted="DeleteProduct" />
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <Pagination MetaData="MetaData" Spread="2" SelectedPage="SelectedPage" />
-  </div>
-</div>
+@using BlazorHostedIdentity.Shared
+
+<MudTable ServerData="@(new Func<TableState, Task<TableData<Product>>>(GetServerData))"
+          Hover="true" Breakpoint="Breakpoint.Sm" RightAlignSmall="true"
+          @ref="_table" RowsPerPage="4">
+  <ToolBarContent>
+    <MudText Typo="Typo.h6">Products</MudText>
+    <MudToolBarSpacer />
+    <MudTextField T="string" ValueChanged="@(searchTerm => OnSearch(searchTerm))"
+                  Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
+                  IconSize="Size.Medium" Class="mt-0"/>
+  </ToolBarContent>
+  <HeaderContent>
+    <MudTh>Image</MudTh>
+    <MudTh>Name</MudTh>
+    <MudTh>Supplier</MudTh>
+    <MudTh>Price</MudTh>
+  </HeaderContent>
+  <RowTemplate>
+    <MudTd DataLabel="Image">
+      <MudAvatar Color="Color.Transparent" Size="Size.Large" Image="@context.ImageUrl" />
+    </MudTd>
+    <MudTd DataLabel="Name">@context.Name</MudTd>
+    <MudTd DataLabel="Supplier">@context.Supplier</MudTd>
+    <MudTd DataLabel="Price">$@context.Price</MudTd>
+  </RowTemplate>
+  <PagerContent>
+    <MudTablePager PageSizeOptions="_pageSizeOptions" RowsPerPageString="Products per page" />
+  </PagerContent>
+</MudTable>

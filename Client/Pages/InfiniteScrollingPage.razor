@@ -1,0 +1,20 @@
+﻿@page "/infinite" 
+
+<h1>Infinite scrolling</h1>
+
+<InfiniteScrolling ItemsProvider="GetItems">
+  <ItemTemplate Context="item">
+    <p>Item @item</p>
+  </ItemTemplate>
+  <LoadingTemplate>
+    <div><span class="oi oi-reload spin"></span> Loading more items...</div>
+  </LoadingTemplate>
+</InfiniteScrolling>
+
+@code {
+  async Task<IEnumerable<int>> GetItems(InfiniteScrollingItemsProviderRequest request)
+  {
+    await Task.Delay(500);
+    return Enumerable.Range(request.StartIndex, 100);
+  }
+}

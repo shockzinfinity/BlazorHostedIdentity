@@ -42,17 +42,23 @@ namespace BlazorHostedIdentity.Client.HttpRepository
     {
       var queryStringParam = new Dictionary<string, string> {
         { "pageNumber", productParameters.PageNumber.ToString() },
-        { "searchTerm", productParameters.SearchTerm == null ? "" : productParameters.SearchTerm },
+        { "pageSize", productParameters.PageSize.ToString() },
+        { "searchTerm", productParameters.SearchTerm ?? "" },
         { "orderBy", productParameters.OrderBy }
       };
-      var response = await _client.GetAsync(QueryHelpers.AddQueryString("api/Products", queryStringParam));
 
-      var pagingResponse = new PagingResponse<Product> {
-        Items = await response.ReadContentAs<List<Product>>(),
-        MetaData = JsonSerializer.Deserialize<MetaData>(response.Headers.GetValues("X-Pagination").First(), _options)
-      };
+      using (var response = await _client.GetAsync(QueryHelpers.AddQueryString("api/Products", queryStringParam))) {
+        response.EnsureSuccessStatusCode();
 
-      return pagingResponse;
+        var stream = await response.Content.ReadAsStreamAsync();
+
+        var pagingResponse = new PagingResponse<Product> {
+          Items = await JsonSerializer.DeserializeAsync<List<Product>>(stream, _options),
+          MetaData = JsonSerializer.Deserialize<MetaData>(response.Headers.GetValues("X-Pagination").First(), _options)
+        };
+
+        return pagingResponse;
+      }
     }
 
     public async Task CreateProduct(Product product)
