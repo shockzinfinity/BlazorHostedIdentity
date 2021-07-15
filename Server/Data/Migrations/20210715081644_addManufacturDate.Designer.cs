@@ -4,14 +4,16 @@ using BlazorHostedIdentity.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlazorHostedIdentity.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210715081644_addManufacturDate")]
+    partial class addManufacturDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,42 +86,6 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("BlazorHostedIdentity.Shared.Declaration", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CustomerRights")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Model")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Origin")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId")
-                        .IsUnique();
-
-                    b.ToTable("Declaration");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("13feebbc-ab65-4e37-aa39-fcc2ed5e5015"),
-                            CustomerRights = "All customer rights guaranteed under consumer protection law.",
-                            Model = "Case & Skin for Samsung Galaxy G324 149 x 70.4 x 7.8 mm",
-                            Origin = "USA",
-                            ProductId = new Guid("4e693871-788d-4db4-89e5-dd7678db975e")
-                        });
-                });
-
             modelBuilder.Entity("BlazorHostedIdentity.Shared.Product", b =>
                 {
                     b.Property<Guid>("Id")
@@ -152,7 +118,7 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         {
                             Id = new Guid("0102f709-1dd7-40de-af3d-23598c6bbd1f"),
                             ImageUrl = "https://ih1.redbubble.net/image.1062161969.4889/mug,travel,x1000,center-pad,1000x1000,f8f8f8.u2.jpg",
-                            ManufactureDate = new DateTime(2021, 5, 11, 17, 41, 51, 340, DateTimeKind.Local).AddTicks(4845),
+                            ManufactureDate = new DateTime(2019, 11, 15, 17, 16, 44, 30, DateTimeKind.Local).AddTicks(3887),
                             Name = "Travel Mug",
                             Price = 11.0,
                             Supplier = "Code Maze"
@@ -161,7 +127,7 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         {
                             Id = new Guid("ac7de2dc-049c-4328-ab06-6cde3ebe8aa7"),
                             ImageUrl = "https://ih1.redbubble.net/image.1063377597.4889/ur,mug_lifestyle,square,1000x1000.u2.jpg",
-                            ManufactureDate = new DateTime(2018, 3, 9, 17, 41, 51, 340, DateTimeKind.Local).AddTicks(4845),
+                            ManufactureDate = new DateTime(2016, 8, 22, 17, 16, 44, 30, DateTimeKind.Local).AddTicks(3887),
                             Name = "Classic Mug",
                             Price = 22.0,
                             Supplier = "Code Maze"
@@ -170,7 +136,7 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         {
                             Id = new Guid("d26384cb-64b9-4aca-acb0-4ebb8fc53ba2"),
                             ImageUrl = "https://ih1.redbubble.net/image.1063364659.4889/ra,vneck,x1900,101010:01c5ca27c6,front-c,160,70,1000,1000-bg,f8f8f8.u2.jpg",
-                            ManufactureDate = new DateTime(2020, 1, 22, 17, 41, 51, 340, DateTimeKind.Local).AddTicks(4845),
+                            ManufactureDate = new DateTime(2019, 5, 3, 17, 16, 44, 30, DateTimeKind.Local).AddTicks(3887),
                             Name = "Code Maze Logo T-Shirt",
                             Price = 20.0,
                             Supplier = "Code Maze"
@@ -179,7 +145,7 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         {
                             Id = new Guid("b47d4c3c-3e29-49b9-b6be-28e5ee4625be"),
                             ImageUrl = "https://ih1.redbubble.net/image.1063364659.4889/ssrco,mhoodie,mens,101010:01c5ca27c6,front,square_three_quarter,x1000-bg,f8f8f8.1u2.jpg",
-                            ManufactureDate = new DateTime(2018, 4, 1, 17, 41, 51, 340, DateTimeKind.Local).AddTicks(4845),
+                            ManufactureDate = new DateTime(2021, 3, 14, 17, 16, 44, 30, DateTimeKind.Local).AddTicks(3887),
                             Name = "Pullover Hoodie",
                             Price = 30.0,
                             Supplier = "Code Maze"
@@ -188,7 +154,7 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         {
                             Id = new Guid("54b2f952-b63e-4cad-8b38-c09955fe4c62"),
                             ImageUrl = "https://ih1.redbubble.net/image.1063364659.4889/ssrco,mhoodiez,mens,101010:01c5ca27c6,front,square_three_quarter,1000x1000-bg,f8f8f8.u2.jpg",
-                            ManufactureDate = new DateTime(2021, 3, 12, 17, 41, 51, 340, DateTimeKind.Local).AddTicks(4845),
+                            ManufactureDate = new DateTime(2021, 5, 23, 17, 16, 44, 30, DateTimeKind.Local).AddTicks(3887),
                             Name = "Fitted Scoop T-Shirt",
                             Price = 40.0,
                             Supplier = "Code Maze"
@@ -197,7 +163,7 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         {
                             Id = new Guid("83e0aa87-158f-4e5f-a8f7-e5a98d13e3a5"),
                             ImageUrl = "https://ih1.redbubble.net/image.1063364659.4889/ra,fitted_scoop,x2000,101010:01c5ca27c6,front-c,160,143,1000,1000-bg,f8f8f8.u2.jpg",
-                            ManufactureDate = new DateTime(2019, 9, 26, 17, 41, 51, 340, DateTimeKind.Local).AddTicks(4845),
+                            ManufactureDate = new DateTime(2017, 4, 15, 17, 16, 44, 30, DateTimeKind.Local).AddTicks(3887),
                             Name = "Zipped Hoodie",
                             Price = 55.0,
                             Supplier = "Code Maze"
@@ -206,7 +172,7 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         {
                             Id = new Guid("488aaa0e-aa7e-4820-b4e9-5715f0e5186e"),
                             ImageUrl = "https://ih1.redbubble.net/image.1062161956.4889/icr,iphone_11_soft,back,a,x1000-pad,1000x1000,f8f8f8.u2.jpg",
-                            ManufactureDate = new DateTime(2020, 9, 25, 17, 41, 51, 340, DateTimeKind.Local).AddTicks(4845),
+                            ManufactureDate = new DateTime(2019, 11, 10, 17, 16, 44, 30, DateTimeKind.Local).AddTicks(3887),
                             Name = "iPhone Case & Cover",
                             Price = 25.0,
                             Supplier = "Code Maze"
@@ -215,7 +181,7 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         {
                             Id = new Guid("4e693871-788d-4db4-89e5-dd7678db975e"),
                             ImageUrl = "https://ih1.redbubble.net/image.1062161956.4889/icr,samsung_galaxy_s10_snap,back,a,x1000-pad,1000x1000,f8f8f8.1u2.jpg",
-                            ManufactureDate = new DateTime(2020, 10, 28, 17, 41, 51, 340, DateTimeKind.Local).AddTicks(4845),
+                            ManufactureDate = new DateTime(2021, 2, 11, 17, 16, 44, 30, DateTimeKind.Local).AddTicks(3887),
                             Name = "Case & Skin for Samsung Galaxy",
                             Price = 35.0,
                             Supplier = "Code Maze"
@@ -224,7 +190,7 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         {
                             Id = new Guid("2d3c2abe-85ec-4d1e-9fef-9b4bfea5f459"),
                             ImageUrl = "https://ih1.redbubble.net/image.1063329780.4889/mwo,x1000,ipad_2_snap-pad,1000x1000,f8f8f8.u2.jpg",
-                            ManufactureDate = new DateTime(2018, 5, 8, 17, 41, 51, 340, DateTimeKind.Local).AddTicks(4845),
+                            ManufactureDate = new DateTime(2018, 8, 2, 17, 16, 44, 30, DateTimeKind.Local).AddTicks(3887),
                             Name = "iPad Case & Skin",
                             Price = 45.0,
                             Supplier = "Code Maze"
@@ -233,7 +199,7 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         {
                             Id = new Guid("d1f22836-6342-480a-be2f-035eeb010fd0"),
                             ImageUrl = "https://ih1.redbubble.net/image.1062161997.4889/clkc,bamboo,white,1000x1000-bg,f8f8f8.u2.jpg",
-                            ManufactureDate = new DateTime(2016, 8, 27, 17, 41, 51, 340, DateTimeKind.Local).AddTicks(4845),
+                            ManufactureDate = new DateTime(2016, 8, 30, 17, 16, 44, 30, DateTimeKind.Local).AddTicks(3887),
                             Name = "Wall Clock",
                             Price = 25.0,
                             Supplier = "Code Maze"
@@ -242,104 +208,10 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         {
                             Id = new Guid("5567d5ac-6b3e-4627-b6c9-cd245f85b845"),
                             ImageUrl = "https://localhost:6001/StaticFiles/Images/shockzHomePicture.jpg",
-                            ManufactureDate = new DateTime(2020, 6, 4, 17, 41, 51, 340, DateTimeKind.Local).AddTicks(4845),
+                            ManufactureDate = new DateTime(2020, 10, 23, 17, 16, 44, 30, DateTimeKind.Local).AddTicks(3887),
                             Name = "shockz Home",
                             Price = 999999999999.0,
                             Supplier = "ironPot42.com"
-                        });
-                });
-
-            modelBuilder.Entity("BlazorHostedIdentity.Shared.QA", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Answer")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Question")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("QA");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("94402f9d-f280-4a7d-9c95-13e430065cee"),
-                            Answer = "Hello Mick. Yes, there is a two year guarantee for it.",
-                            ProductId = new Guid("4e693871-788d-4db4-89e5-dd7678db975e"),
-                            Question = "Is there a guarantee for this product",
-                            User = "Mick Simons"
-                        },
-                        new
-                        {
-                            Id = new Guid("06579037-943b-4ce5-8dd6-39f34ad49329"),
-                            Answer = "Hello Brigit. You can order it online on our web shop.",
-                            ProductId = new Guid("4e693871-788d-4db4-89e5-dd7678db975e"),
-                            Question = "How can I get this product",
-                            User = "Brigit Fansey"
-                        });
-                });
-
-            modelBuilder.Entity("BlazorHostedIdentity.Shared.Review", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Rate")
-                        .HasColumnType("int");
-
-                    b.Property<string>("User")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Review");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("b4031733-83a6-4d7c-b995-a3a0c0a35c39"),
-                            Comment = "Great product. Fits my phone perfectly.",
-                            ProductId = new Guid("4e693871-788d-4db4-89e5-dd7678db975e"),
-                            Rate = 5,
-                            User = "Tim Malock"
-                        },
-                        new
-                        {
-                            Id = new Guid("f43017fd-1a65-4ad1-8610-ec4154a21c87"),
-                            Comment = "I use it all the time. Excellent stuff.",
-                            ProductId = new Guid("4e693871-788d-4db4-89e5-dd7678db975e"),
-                            Rate = 4,
-                            User = "Ana Swan"
-                        },
-                        new
-                        {
-                            Id = new Guid("b88bc5c2-660d-4604-ba92-69abf546e881"),
-                            Comment = "It could be better, I am not that satisfied.",
-                            ProductId = new Guid("4e693871-788d-4db4-89e5-dd7678db975e"),
-                            Rate = 3,
-                            User = "John Mining"
                         });
                 });
 
@@ -475,15 +347,15 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "89e3c8ac-2ad2-4a51-a4fd-1cbd9eaa2b84",
-                            ConcurrencyStamp = "2d6c5c43-449a-4b30-975f-4169f51d783d",
+                            Id = "dd0328cb-5cd2-49c5-93a7-0cf4f7ccc526",
+                            ConcurrencyStamp = "bfc8d44c-bb59-44c5-ba2c-ec87dda8f0e5",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "2acdf3c3-104c-4cdf-9134-f397133f71d8",
-                            ConcurrencyStamp = "2045837f-f2dd-4cae-8a9f-e0036a49f677",
+                            Id = "88da663f-d7dc-4e37-b518-2b7991605fd9",
+                            ConcurrencyStamp = "86ce7b5b-d4d1-41b6-993f-c614b68a892b",
                             Name = "Administorator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -597,39 +469,6 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("BlazorHostedIdentity.Shared.Declaration", b =>
-                {
-                    b.HasOne("BlazorHostedIdentity.Shared.Product", "Product")
-                        .WithOne("Declaration")
-                        .HasForeignKey("BlazorHostedIdentity.Shared.Declaration", "ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("BlazorHostedIdentity.Shared.QA", b =>
-                {
-                    b.HasOne("BlazorHostedIdentity.Shared.Product", "Product")
-                        .WithMany("QAs")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("BlazorHostedIdentity.Shared.Review", b =>
-                {
-                    b.HasOne("BlazorHostedIdentity.Shared.Product", "Product")
-                        .WithMany("Reviews")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -679,15 +518,6 @@ namespace BlazorHostedIdentity.Server.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BlazorHostedIdentity.Shared.Product", b =>
-                {
-                    b.Navigation("Declaration");
-
-                    b.Navigation("QAs");
-
-                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

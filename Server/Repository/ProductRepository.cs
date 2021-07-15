@@ -38,7 +38,7 @@ namespace BlazorHostedIdentity.Server.Repository
       await _context.SaveChangesAsync();
     }
 
-    public async Task<Product> GetProduct(Guid guid) => await _context.Products.FirstOrDefaultAsync(p => p.Id.Equals(guid));
+    public async Task<Product> GetProduct(Guid guid) => await _context.Products.Include(r => r.Reviews).Include(q => q.QAs).Include(d => d.Declaration).SingleOrDefaultAsync(p => p.Id.Equals(guid));
 
     public async Task UpdateProduct(Product product, Product dbProduct)
     {

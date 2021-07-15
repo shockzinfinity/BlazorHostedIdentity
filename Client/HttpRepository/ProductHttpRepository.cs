@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BlazorHostedIdentity.Client.HttpRepository
@@ -21,7 +22,7 @@ namespace BlazorHostedIdentity.Client.HttpRepository
     public ProductHttpRepository(HttpClient client)
     {
       _client = client ?? throw new ArgumentNullException(nameof(client));
-      _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+      _options = new JsonSerializerOptions { ReferenceHandler = ReferenceHandler.Preserve, PropertyNameCaseInsensitive = true };
     }
 
     //public async Task<List<Product>> GetProducts()
@@ -61,6 +62,20 @@ namespace BlazorHostedIdentity.Client.HttpRepository
       }
     }
 
+    public async Task<Product> GetProduct(Guid id)
+    {
+      var url = $"api/Products/{id}";
+
+      using (var response = await _client.GetAsync(url)) {
+        response.EnsureSuccessStatusCode();
+
+        var stream = await response.Content.ReadAsStreamAsync();
+        var product = await JsonSerializer.DeserializeAsync<Product>(stream, _options);
+
+        return product;
+      }
+    }
+
     public async Task CreateProduct(Product product)
     {
       var content = JsonSerializer.Serialize(product);
@@ -87,15 +102,6 @@ namespace BlazorHostedIdentity.Client.HttpRepository
 
         return imageUrl;
       }
-    }
-
-    public async Task<Product> GetProduct(string id)
-    {
-      var url = Path.Combine("api/Products", id);
-      var response = await _client.GetAsync(url);
-      var product = await response.ReadContentAs<Product>();
-
-      return product;
     }
 
     public async Task UpdateProduct(Product product)

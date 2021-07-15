@@ -15,7 +15,7 @@ namespace BlazorHostedIdentity.Client.Pages
 
     protected override async Task OnInitializedAsync()
     {
-      _product = await ProductRepository.GetProduct(Id);
+      _product = await ProductRepository.GetProduct(new System.Guid(Id));
     }
 
     private async Task Update()

@@ -7,8 +7,13 @@ namespace BlazorHostedIdentity.Server.Data
 {
   public class ProductConfiguration : IEntityTypeConfiguration<Product>
   {
+    private readonly Random _rnd = new Random();
+
     public void Configure(EntityTypeBuilder<Product> builder)
     {
+      DateTime start = DateTime.Now.AddYears(-5);
+      int range = (DateTime.Today - start).Days;
+
       builder.HasData
       (
         //Mugs
@@ -17,14 +22,16 @@ namespace BlazorHostedIdentity.Server.Data
           Name = "Travel Mug",
           Supplier = "Code Maze",
           ImageUrl = "https://ih1.redbubble.net/image.1062161969.4889/mug,travel,x1000,center-pad,1000x1000,f8f8f8.u2.jpg",
-          Price = 11
+          Price = 11,
+          ManufactureDate = start.AddDays(_rnd.Next(range))
         },
         new Product {
           Id = new Guid("AC7DE2DC-049C-4328-AB06-6CDE3EBE8AA7"),
           Name = "Classic Mug",
           Supplier = "Code Maze",
           ImageUrl = "https://ih1.redbubble.net/image.1063377597.4889/ur,mug_lifestyle,square,1000x1000.u2.jpg",
-          Price = 22
+          Price = 22,
+          ManufactureDate = start.AddDays(_rnd.Next(range))
         },
         //Clothing
         new Product {
@@ -32,28 +39,32 @@ namespace BlazorHostedIdentity.Server.Data
           Name = "Code Maze Logo T-Shirt",
           Supplier = "Code Maze",
           ImageUrl = "https://ih1.redbubble.net/image.1063364659.4889/ra,vneck,x1900,101010:01c5ca27c6,front-c,160,70,1000,1000-bg,f8f8f8.u2.jpg",
-          Price = 20
+          Price = 20,
+          ManufactureDate = start.AddDays(_rnd.Next(range))
         },
         new Product {
           Id = new Guid("B47D4C3C-3E29-49B9-B6BE-28E5EE4625BE"),
           Name = "Pullover Hoodie",
           Supplier = "Code Maze",
           ImageUrl = "https://ih1.redbubble.net/image.1063364659.4889/ssrco,mhoodie,mens,101010:01c5ca27c6,front,square_three_quarter,x1000-bg,f8f8f8.1u2.jpg",
-          Price = 30
+          Price = 30,
+          ManufactureDate = start.AddDays(_rnd.Next(range))
         },
         new Product {
           Id = new Guid("54B2F952-B63E-4CAD-8B38-C09955FE4C62"),
           Name = "Fitted Scoop T-Shirt",
           Supplier = "Code Maze",
           ImageUrl = "https://ih1.redbubble.net/image.1063364659.4889/ssrco,mhoodiez,mens,101010:01c5ca27c6,front,square_three_quarter,1000x1000-bg,f8f8f8.u2.jpg",
-          Price = 40
+          Price = 40,
+          ManufactureDate = start.AddDays(_rnd.Next(range))
         },
         new Product {
           Id = new Guid("83E0AA87-158F-4E5F-A8F7-E5A98D13E3A5"),
           Name = "Zipped Hoodie",
           Supplier = "Code Maze",
           ImageUrl = "https://ih1.redbubble.net/image.1063364659.4889/ra,fitted_scoop,x2000,101010:01c5ca27c6,front-c,160,143,1000,1000-bg,f8f8f8.u2.jpg",
-          Price = 55
+          Price = 55,
+          ManufactureDate = start.AddDays(_rnd.Next(range))
         },
         //Phone
         new Product {
@@ -61,21 +72,24 @@ namespace BlazorHostedIdentity.Server.Data
           Name = "iPhone Case & Cover",
           Supplier = "Code Maze",
           ImageUrl = "https://ih1.redbubble.net/image.1062161956.4889/icr,iphone_11_soft,back,a,x1000-pad,1000x1000,f8f8f8.u2.jpg",
-          Price = 25
+          Price = 25,
+          ManufactureDate = start.AddDays(_rnd.Next(range))
         },
         new Product {
           Id = new Guid("4E693871-788D-4DB4-89E5-DD7678DB975E"),
           Name = "Case & Skin for Samsung Galaxy",
           Supplier = "Code Maze",
           ImageUrl = "https://ih1.redbubble.net/image.1062161956.4889/icr,samsung_galaxy_s10_snap,back,a,x1000-pad,1000x1000,f8f8f8.1u2.jpg",
-          Price = 35
+          Price = 35,
+          ManufactureDate = start.AddDays(_rnd.Next(range))
         },
         new Product {
           Id = new Guid("2D3C2ABE-85EC-4D1E-9FEF-9B4BFEA5F459"),
           Name = "iPad Case & Skin",
           Supplier = "Code Maze",
           ImageUrl = "https://ih1.redbubble.net/image.1063329780.4889/mwo,x1000,ipad_2_snap-pad,1000x1000,f8f8f8.u2.jpg",
-          Price = 45
+          Price = 45,
+          ManufactureDate = start.AddDays(_rnd.Next(range))
         },
         //Home
         new Product {
@@ -83,7 +97,17 @@ namespace BlazorHostedIdentity.Server.Data
           Name = "Wall Clock",
           Supplier = "Code Maze",
           ImageUrl = "https://ih1.redbubble.net/image.1062161997.4889/clkc,bamboo,white,1000x1000-bg,f8f8f8.u2.jpg",
-          Price = 25
+          Price = 25,
+          ManufactureDate = start.AddDays(_rnd.Next(range))
+        },
+        //Custom
+        new Product {
+          Id = new Guid("5567D5AC-6B3E-4627-B6C9-CD245F85B845"),
+          Name = "shockz Home",
+          Supplier = "ironPot42.com",
+          ImageUrl = "https://localhost:6001/StaticFiles/Images/shockzHomePicture.jpg",
+          Price = 999999999999,
+          ManufactureDate = start.AddDays(_rnd.Next(range))
         }
       );
     }

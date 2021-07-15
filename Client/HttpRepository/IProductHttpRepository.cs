@@ -15,7 +15,7 @@ namespace BlazorHostedIdentity.Client.HttpRepository
 
     Task<string> UploadProductImage(MultipartFormDataContent content);
 
-    Task<Product> GetProduct(string id);
+    Task<Product> GetProduct(Guid id);
 
     Task UpdateProduct(Product product);
 

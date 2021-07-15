@@ -18,6 +18,9 @@ namespace BlazorHostedIdentity.Server.Data
       base.OnModelCreating(builder);
       builder.ApplyConfiguration(new RoleConfiguration());
       builder.ApplyConfiguration(new ProductConfiguration());
+      builder.ApplyConfiguration(new QAConfiguration());
+      builder.ApplyConfiguration(new DeclarationConfiguration());
+      builder.ApplyConfiguration(new ReviewConfiguration());
     }
 
     public DbSet<Product> Products { get; set; }

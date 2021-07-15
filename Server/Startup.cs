@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace BlazorHostedIdentity.Server
 {
@@ -62,7 +63,10 @@ namespace BlazorHostedIdentity.Server
           fo.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
         });
 
-      services.AddControllersWithViews();
+      services.AddControllersWithViews().AddJsonOptions(options =>
+      {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+      });
       services.AddRazorPages();
     }
 
