@@ -10,8 +10,8 @@
     <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Logout" Color="Color.Secondary" OnClick="BeginSignOut" Size="Size.Small">Logout</MudButton>
   </Authorized>
   <NotAuthorized>
-    <MudLink Href="authentication/register">Register</MudLink>
-    <MudLink Href="authentication/login">Log in</MudLink>
+    <MudLink Color="Color.Primary" Href="authentication/register"><MudIconButton Color="Color.Default" Icon="@Icons.Material.Filled.AppRegistration" /></MudLink>
+    <MudLink Color="Color.Primary" Href="authentication/login"><MudIconButton Color="Color.Default" Icon="@Icons.Material.Filled.Login" /></MudLink>
   </NotAuthorized>
 </AuthorizeView>
 
